@@ -5,6 +5,7 @@ let snakeX = 5, snakeY = 10;
 let snakeBody = []; // Store body segments
 let velocityX = 0, velocityY = 0; // Initial velocity (no movement)
 let gameOver = false; // Track if the game is over
+let score = 0; // Initialize score
 let gameInterval; // Store the interval ID for stopping the game
 
 const changeFoodPosition = () => {
@@ -43,10 +44,21 @@ const updateGame = () => {
 
     // Check if the snake has eaten the food
     if (snakeX === foodX && snakeY === foodY) {
+        score++;  // Increase score by 1
         changeFoodPosition();  // Generate new food
     } else {
         // If food is not eaten, remove the last segment of the body
         snakeBody.pop();
+    }
+
+    // Check if the snake collided with its body
+    for (let i = 0; i < snakeBody.length; i++) {
+        if (snakeBody[i].x === snakeX && snakeBody[i].y === snakeY) {
+            gameOver = true;  // Set game over if head collides with body
+            clearInterval(gameInterval);  // Stop the game loop
+            renderGame();  // Render final "Game Over" state
+            return;
+        }
     }
 
     // Check if the snake collided with the walls
@@ -76,6 +88,10 @@ const renderGame = () => {
     if (gameOver) {
         htmlMarkup += `<div class="game-over">Game Over</div>`;
     }
+
+    // Update the score in the existing HTML
+    const scoreElement = document.querySelector(".score");
+    scoreElement.textContent = `Score: ${score}`;
 
     playBoard.innerHTML = htmlMarkup;
 }
