@@ -43,4 +43,7 @@ body {
 .play-board .head {
     background: black;
 }
+.play-board .body {
+    background: green;
+}
 
