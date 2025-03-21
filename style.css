@@ -40,3 +40,7 @@ body {
 .play-board .food {
     background: red;
 }
+.play-board .head {
+    background: black;
+}
+
