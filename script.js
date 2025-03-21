@@ -4,6 +4,8 @@ let foodX, foodY;
 let snakeX = 5, snakeY = 10;
 let snakeBody = []; // Store body segments
 let velocityX = 0, velocityY = 0; // Initial velocity (no movement)
+let gameOver = false; // Track if the game is over
+let gameInterval; // Store the interval ID for stopping the game
 
 const changeFoodPosition = () => {
     foodX = Math.floor(Math.random() * 30) + 1;
@@ -27,6 +29,8 @@ const changeDirection = (e) => {
 }
 
 const updateGame = () => {
+    if (gameOver) return; // Prevent further movement if the game is over
+
     // Save the current head position
     const head = { x: snakeX, y: snakeY };
 
@@ -45,11 +49,13 @@ const updateGame = () => {
         snakeBody.pop();
     }
 
-    // Ensure the snake doesn't move out of bounds
-    if (snakeX < 1) snakeX = 30;
-    if (snakeX > 30) snakeX = 1;
-    if (snakeY < 1) snakeY = 30;
-    if (snakeY > 30) snakeY = 1;
+    // Check if the snake collided with the walls
+    if (snakeX < 1 || snakeX > 30 || snakeY < 1 || snakeY > 30) {
+        gameOver = true;  // Set game over
+        clearInterval(gameInterval);  // Stop the game loop
+        renderGame();  // Render final "Game Over" state
+        return;
+    }
 
     // Render the updated game
     renderGame();
@@ -66,13 +72,18 @@ const renderGame = () => {
         htmlMarkup += `<div class="body" style="grid-area: ${segment.y} / ${segment.x}"></div>`;
     });
 
+    // If the game is over, display the "Game Over" message
+    if (gameOver) {
+        htmlMarkup += `<div class="game-over">Game Over</div>`;
+    }
+
     playBoard.innerHTML = htmlMarkup;
 }
 
 const initGame = () => {
     changeFoodPosition();
     renderGame();
-    setInterval(updateGame, 100); // Update game every 100ms
+    gameInterval = setInterval(updateGame, 100); // Update game every 100ms
 }
 
 // Listen for arrow key presses to change direction
