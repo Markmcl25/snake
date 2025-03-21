@@ -46,4 +46,29 @@ body {
 .play-board .body {
     background: green;
 }
+/* Controls styling */
+.controls {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: background for better visibility */
+    padding: 10px;
+}
 
+.controls i {
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 15px;
+    background-color: #f39c12;
+    border-radius: 50%;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.controls i:hover {
+    background-color: #e67e22;
+}

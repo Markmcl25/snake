@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
     <title>Snake Game JS</title>
@@ -13,7 +14,15 @@
             <span class="score">Score: 15</span>
             <span class="high-score">High Score: 30</span>
         </div>
-        <div class="play-board"></div>
+        <div class="play-board">
+            <!-- Controls inside the play-board div -->
+            <div class="controls">
+                <i class="fa-solid fa-arrow-left-long arrow-left"></i>
+                <i class="fa-solid fa-arrow-up-long arrow-up"></i>
+                <i class="fa-solid fa-arrow-right-long arrow-right"></i>
+                <i class="fa-solid fa-arrow-down-long arrow-down"></i>
+            </div>
+        </div>
     </div>
 </body>
 </html>
