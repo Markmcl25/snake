@@ -6,6 +6,7 @@ let snakeBody = []; // Store body segments
 let velocityX = 0, velocityY = 0; // Initial velocity (no movement)
 let gameOver = false; // Track if the game is over
 let score = 0; // Initialize score
+let highScore = localStorage.getItem('highScore') || 0; // Get high score from localStorage or set to 0 if not found
 let gameInterval; // Store the interval ID for stopping the game
 
 const changeFoodPosition = () => {
@@ -56,6 +57,10 @@ const updateGame = () => {
         if (snakeBody[i].x === snakeX && snakeBody[i].y === snakeY) {
             gameOver = true;  // Set game over if head collides with body
             clearInterval(gameInterval);  // Stop the game loop
+            if (score > highScore) {
+                highScore = score;  // Update high score if current score is higher
+                localStorage.setItem('highScore', highScore);  // Store new high score in localStorage
+            }
             renderGame();  // Render final "Game Over" state
             return;
         }
@@ -65,6 +70,10 @@ const updateGame = () => {
     if (snakeX < 1 || snakeX > 30 || snakeY < 1 || snakeY > 30) {
         gameOver = true;  // Set game over
         clearInterval(gameInterval);  // Stop the game loop
+        if (score > highScore) {
+            highScore = score;  // Update high score if current score is higher
+            localStorage.setItem('highScore', highScore);  // Store new high score in localStorage
+        }
         renderGame();  // Render final "Game Over" state
         return;
     }
@@ -92,6 +101,10 @@ const renderGame = () => {
     // Update the score in the existing HTML
     const scoreElement = document.querySelector(".score");
     scoreElement.textContent = `Score: ${score}`;
+
+    // Update the high score in the existing HTML
+    const highScoreElement = document.querySelector(".high-score");
+    highScoreElement.textContent = `High Score: ${highScore}`;
 
     playBoard.innerHTML = htmlMarkup;
 }
