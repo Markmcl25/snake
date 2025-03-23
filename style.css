@@ -108,3 +108,54 @@ body {
     text-align: center;
     animation: fadeIn 1s ease-out;
 }
+
+/* Media Query for Smaller Devices (Mobile) */
+@media (max-width: 600px) {
+    .wrapper {
+        width: 80vmin; /* Slightly wider width for mobile */
+        height: 85vmin; /* Slightly taller height for mobile */
+        padding: 5vmin; /* Add padding to avoid the edges */
+    }
+
+    .game-details {
+        font-size: 4vw; /* Scale down text size for small screens */
+    }
+
+    .controls {
+        height: 20vmin; /* Make controls larger for mobile */
+    }
+
+    .controls i {
+        font-size: 6vw; /* Increase button size for smaller screens */
+    }
+
+    .game-over {
+        font-size: 8vw; /* Make the "Game Over" text larger on mobile */
+        padding: 6vh 10vw; /* Adjust padding for better spacing */
+    }
+}
+
+/* Media Query for Tablets */
+@media (max-width: 768px) {
+    .wrapper {
+        width: 80vmin; /* Adjust width for tablet devices */
+        height: 80vmin; /* Adjust height for tablet devices */
+    }
+
+    .game-details {
+        font-size: 3vw; /* Adjust text size for tablets */
+    }
+
+    .controls {
+        height: 18vmin; /* Adjust control height */
+    }
+
+    .controls i {
+        font-size: 5vw; /* Adjust button size for tablets */
+    }
+
+    .game-over {
+        font-size: 7vw; /* Adjust "Game Over" font size */
+        padding: 5vh 9vw; /* Adjust padding for tablets */
+    }
+}
