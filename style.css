@@ -93,3 +93,18 @@ body {
 .controls i:hover {
     background-color: #e67e22;
 }
+
+/* Game Over Message Styling */
+.game-over {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact center */
+    font-size: 3rem; /* Larger font size for emphasis */
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+}

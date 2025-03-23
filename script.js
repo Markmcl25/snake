@@ -14,17 +14,18 @@ const changeFoodPosition = () => {
     foodY = Math.floor(Math.random() * 30) + 1;
 }
 
+// Change direction when an arrow key or button is pressed
 const changeDirection = (e) => {
-    if (e.key === "ArrowUp" && velocityY === 0) {
+    if (e.key === "ArrowUp" || e.target.id === "up" && velocityY === 0) {
         velocityX = 0;
         velocityY = -1; // Move up
-    } else if (e.key === "ArrowDown" && velocityY === 0) {
+    } else if (e.key === "ArrowDown" || e.target.id === "down" && velocityY === 0) {
         velocityX = 0;
         velocityY = 1; // Move down
-    } else if (e.key === "ArrowLeft" && velocityX === 0) {
+    } else if (e.key === "ArrowLeft" || e.target.id === "left" && velocityX === 0) {
         velocityX = -1;
         velocityY = 0; // Move left
-    } else if (e.key === "ArrowRight" && velocityX === 0) {
+    } else if (e.key === "ArrowRight" || e.target.id === "right" && velocityX === 0) {
         velocityX = 1;
         velocityY = 0; // Move right
     }
@@ -109,13 +110,19 @@ const renderGame = () => {
     playBoard.innerHTML = htmlMarkup;
 }
 
+// Event listeners for the control buttons
+document.querySelector("#up").addEventListener("click", changeDirection);
+document.querySelector("#down").addEventListener("click", changeDirection);
+document.querySelector("#left").addEventListener("click", changeDirection);
+document.querySelector("#right").addEventListener("click", changeDirection);
+
+// Listen for arrow key presses to change direction
+document.addEventListener("keydown", changeDirection);
+
 const initGame = () => {
     changeFoodPosition();
     renderGame();
     gameInterval = setInterval(updateGame, 100); // Update game every 100ms
 }
-
-// Listen for arrow key presses to change direction
-document.addEventListener("keydown", changeDirection);
 
 initGame();
